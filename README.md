@@ -25,10 +25,6 @@ sudo apt-get install -y docker-compose docker-compose-plugin
 ```
 
 # Docker Login
-docker login
-```
-
-
 ### Stop all containers
 ```bash
 docker stop $(docker ps -a -q)
