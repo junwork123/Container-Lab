@@ -1,28 +1,14 @@
 services:
-  # HTTP 요청을 HTTPS로 리다이렉트할 Nginx
   nginx:
     image: nginx:stable-alpine
+    container_name: nginx
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-    # 특정 시간마다 Nginx 재시작
-    command: >
-      /bin/sh -c '
-        while :
-        do
-          sleep 6h &
-          wait $${!}
-          nginx -s reload
-        done &
-        nginx -g "daemon off;"
-      '
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+
   application-server:
     image: alexwhen/docker-2048
     expose:
       - 80
-
-networks:
-  app-network:
-
