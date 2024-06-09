@@ -5,11 +5,16 @@
 - [x] Docker
 - [x] Docker Compose
 - [x] DNS Configurations
-  - `A` - `www` - `${YOUR_SERVER_IP}`
-  - `A` - `@` - `${YOUR_SERVER_IP}`
+  - `A` - `www` - `${MY_HOSTNAME}`
+  - `A` - `@` - `${MY_HOSTNAME}`
 
 ## Getting Started
-1. Run `docker-compose`
+### Run
 ```bash
 docker compose up -d
+```
+
+### Stop
+```bash
+docker compose down -v
 ```

@@ -24,7 +24,7 @@ sudo chown -R $USER:$USER /var/run/docker.sock # Docker 소유자 변경
 sudo apt-get install -y docker-compose docker-compose-plugin
 ```
 
-# Docker Login
+## Basic Usage
 ### Stop all containers
 ```bash
 docker stop $(docker ps -a -q)
@@ -38,4 +38,8 @@ docker rm $(docker ps -a -q)
 ### Remove unused images
 ```bash
 docker image prune
+```
+### Execute bash in a running container
+```bash
+docker exec -it <container_name> /bin/bash
 ```
