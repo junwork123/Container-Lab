@@ -13,3 +13,12 @@ services:
     image: alexwhen/docker-2048
     expose:
       - 80
+
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared:latest
+    command:
+      - tunnel
+      - --no-autoupdate
+      - run
+      - --token
+      - eyJhIjoiMGFiNGRhNTUxZGQ5NTM3YzJhMDBkNWI1Y2M2NzY5YzEiLCJ0IjoiOWJlZjMxOTAtZTEzYy00ZTdkLWJmYWUtMGYwMmY4MzE4OTkxIiwicyI6Ill6RTFNREExWlRrdFlXWmtNUzAwTkdJNUxUbGtOV1l0WkRWaU56VTNaVGc0TldabSJ9
