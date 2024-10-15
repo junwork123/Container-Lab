@@ -1,0 +1,14 @@
+services:
+  game-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+
+  game-server-heavy:
+    build:
+      context: .
+      dockerfile: heavy.Dockerfile
+    ports:
+      - "8080:80"
