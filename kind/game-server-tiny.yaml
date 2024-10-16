@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: game-server-tiny
+spec:
+  containers:
+    - name: game-server-tiny
+      image: game-server:1.0-tiny
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: game-server-tiny-special
+spec:
+  containers:
+    - name: game-server-tiny-special
+      image: game-server:1.0-tiny
+      env:
+        - name: KEYWORD
+          value: "special"

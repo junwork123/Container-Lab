@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: game-server
+spec:
+  containers:
+    - name: game-server
+      image: game-server:1.0
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: game-server
+spec:
+  selector:
+      app: game-server
+  ports:
+      - protocol: TCP
+      port: 80
+      targetPort: 80

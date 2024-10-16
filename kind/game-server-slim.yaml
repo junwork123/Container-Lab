@@ -1,0 +1,8 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: game-server-slim
+spec:
+  containers:
+    - name: game-server-slim
+      image: game-server:1.0-slim
