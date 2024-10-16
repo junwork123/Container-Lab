@@ -1,15 +1,28 @@
-https://kind.sigs.k8s.io/docs/user/quick-start/
+## Requirements
 
-## Quick Start
+### KinD
+
+[Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+
 - Mac
-```bash
-brew install kind
-```
+    ```bash
+    brew install kind
+    ```
 
 - Windows
-```bash
-curl.exe -Lo kind.exe https://kind.sigs.k8s.io/dl/v0.24.0/kind-windows-amd64
-```
+    ```bash
+    curl.exe -Lo kind.exe https://kind.sigs.k8s.io/dl/v0.24.0/kind-windows-amd64
+    ```
+
+- Ubuntu
+    ```bash
+    # For AMD64 / x86_64
+    [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.24.0/kind-linux-amd64
+    # For ARM64
+    [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.24.0/kind-linux-arm64
+    chmod +x ./kind
+    sudo mv ./kind /usr/local/bin/kind 
+    ```
 
 ## Create a cluster
 
