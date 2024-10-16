@@ -20,10 +20,13 @@ RUN rm -f /etc/nginx/http.d/default.conf && \
 # 빌드 단계에서 가져온 소스코드 복사
 COPY --from=build /src/2048 /var/lib/nginx/html
 
-# 구분을 위해 HTML 코드 수정
-RUN sed -i 's|<title>2048</title>|<title>Tiny 2048</title>|g' /var/lib/nginx/html/index.html && \
-    sed -i 's|<h1 class="title">2048</h1>|<h1 class="title">Tiny 2048</h1>|g' /var/lib/nginx/html/index.html
+# 환경 변수 설정
+ARG KEYWORD=tiny
+ENV KEYWORD ${KEYWORD}
 
+# 구분을 위해 HTML 코드 수정
+RUN sed -i "s|<title>2048</title>|<title>${KEYWORD} 2048</title>|g" /var/lib/nginx/html/index.html && \
+    sed -i "s|<h1 class=\"title\">2048</h1>|<h1 class=\"title\">${KEYWORD} 2048</h1>|g" /var/lib/nginx/html/index.html
 
 # 외부에 노출할 포트 설정
 EXPOSE 80
