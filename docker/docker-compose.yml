@@ -6,9 +6,16 @@ services:
     ports:
       - "80:80"
 
-  game-server-heavy:
+  game-server-slim:
     build:
       context: .
-      dockerfile: heavy.Dockerfile
+      dockerfile: slim.Dockerfile
     ports:
       - "8080:80"
+
+  game-server-tiny:
+    build:
+      context: .
+      dockerfile: tiny.Dockerfile
+    ports:
+      - "8000:80"

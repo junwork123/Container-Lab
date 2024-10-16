@@ -25,6 +25,37 @@
     sudo apt-get install -y docker-compose docker-compose-plugin
     ```
 
+## Getting Started
+
+### Build Docker Image
+```bash
+docker build -t game-server:1.0 .
+
+docker build -t game-server:1.0-slim -f slim.Dockerfile .
+
+docker build -t game-server:1.0-tiny -f tiny.Dockerfile .
+```
+
+### Run Docker Image
+```bash
+docker run game-server:1.0
+
+docker run -p 80:80 game-server:1.0
+
+docker run -p 80:80 -d game-server:1.0
+```
+
+### Stop Docker Container
+```bash
+docker rm $(docker ps -a -q)
+```
+
+### Push Docker Image
+```bash
+docker tag game-server:1.0 <username>/game-server:1.0
+```
+
+
 ## Clean Up
 ### Stop all containers
 ```bash
