@@ -1,4 +1,7 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
+
+# 대화형 설정을 무시
+ARG DEBIAN_FRONTEND=noninteractive
 
 # 패키지 설치
 RUN apt-get update && apt-get install -y nginx git
