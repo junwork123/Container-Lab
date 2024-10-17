@@ -1,20 +1,33 @@
-kind: Pod
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: game-server-tiny
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game-server-tiny
+  template:
+    metadata:
+      labels:
+        app: game-server-tiny
+    spec:
+      containers:
+        - name: game-server-tiny
+          image: game-server:1.0-tiny
+#          env:
+#            - name: KEYWORD
+#              value: "special"
+---
+kind: Service
 apiVersion: v1
 metadata:
   name: game-server-tiny
 spec:
-  containers:
-    - name: game-server-tiny
-      image: game-server:1.0-tiny
----
-kind: Pod
-apiVersion: v1
-metadata:
-  name: game-server-tiny-special
-spec:
-  containers:
-    - name: game-server-tiny-special
-      image: game-server:1.0-tiny
-      env:
-        - name: KEYWORD
-          value: "special"
+  selector:
+    app: game-server-tiny
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

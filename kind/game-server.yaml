@@ -1,11 +1,20 @@
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: game-server
 spec:
-  containers:
-    - name: game-server
-      image: game-server:1.0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game-server
+  template:
+    metadata:
+      labels:
+          app: game-server
+    spec:
+      containers:
+          - name: game-server
+            image: game-server:1.0
 ---
 kind: Service
 apiVersion: v1
@@ -13,8 +22,9 @@ metadata:
   name: game-server
 spec:
   selector:
-      app: game-server
+    app: game-server
+  type: ClusterIP
   ports:
-      - protocol: TCP
+    - name: http
       port: 80
       targetPort: 80
