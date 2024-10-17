@@ -15,9 +15,6 @@ spec:
       containers:
         - name: game-server-tiny
           image: game-server:1.0-tiny
-#          env:
-#            - name: KEYWORD
-#              value: "special"
 ---
 kind: Service
 apiVersion: v1
