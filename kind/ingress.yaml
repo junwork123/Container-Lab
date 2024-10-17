@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: game-server
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /game?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: game-server
+                port:
+                  name: http
+          - path: /game/slim(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: game-server-slim
+                port:
+                  name: http
+          - path: /game/tiny(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: game-server-tiny
+                port:
+                  name: http
