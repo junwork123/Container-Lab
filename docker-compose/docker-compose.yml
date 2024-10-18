@@ -1,0 +1,15 @@
+services:
+  game-server:
+    image: game-server:1.0
+    ports:
+      - "80:80"
+
+  game-server-slim:
+    image: game-server:1.0-slim
+    ports:
+      - "8080:80"
+
+  game-server-tiny:
+    image: game-server:1.0-tiny
+    ports:
+      - "8000:80"

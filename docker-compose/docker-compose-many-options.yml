@@ -1,0 +1,66 @@
+services:
+  game-server:
+    image: game-server:1.0
+    restart: always
+    environment:
+      - ENV=production
+      - TZ=Asia/Seoul
+    ports:
+      - "80:80"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "10m"
+          max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 200M
+        reservations:
+          cpus: '0.5'
+          memory: 200M
+
+  game-server-slim:
+    image: game-server:1.0-slim
+    restart: always
+    environment:
+      - ENV=production
+      - TZ=Asia/Seoul
+    ports:
+      - "8080:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 200M
+        reservations:
+          cpus: '0.5'
+          memory: 200M
+
+  game-server-tiny:
+    image: game-server:1.0-tiny
+    restart: always
+    environment:
+      - ENV=production
+      - TZ=Asia/Seoul
+    ports:
+      - "8000:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 200M
+        reservations:
+          cpus: '0.5'
+          memory: 200M

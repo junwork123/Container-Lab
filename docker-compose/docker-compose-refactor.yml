@@ -1,0 +1,41 @@
+# 공통 설정
+x-common-config:
+  &common-config
+  restart: always
+  environment:
+    - ENV=production
+    - TZ=Asia/Seoul
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+  deploy:
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 200M
+      reservations:
+        cpus: '0.5'
+        memory: 200M
+
+services:
+  game-server:
+    <<: *common-config
+    image: game-server:1.0
+    ports:
+      - "80:80"
+
+  game-server-slim:
+    <<: *common-config
+    image: game-server:1.0-slim
+    ports:
+      - "8080:80"
+    depends_on:
+      - game-server
+
+  game-server-tiny:
+    <<: *common-config
+    image: game-server:1.0-tiny
+    ports:
+      - "8000:80"
