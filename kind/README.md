@@ -55,9 +55,42 @@ kind create cluster --config cluster.yaml
 .\kind.exe create cluster --config cluster.yaml
 ```
 
+### Install Ingress
+
+클러스터가 외부와 통신하기 위한 Ingress Controller 설치
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+kubectl wait -n ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=180s
+kubectl apply -f ingress.yaml
+```
+
 ### Load Docker Image
+
+클러스터 내에서 사용할 이미지를 업로드 
+
 ```bash
 kind load docker-image game-server:1.0
+
+kind load docker-image game-server:1.0-slim
+
+kind load docker-image game-server:1.0-tiny
+```
+
+### Deploy
+
+```bash
+kubectl apply -f game-server.yaml
+
+kubectl apply -f game-server-slim.yaml
+
+kubectl apply -f game-server-tiny.yaml
+```
+
+### Check
+
+```bash
+kubectl get pods
 ```
 
 ## Clean up
